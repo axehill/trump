@@ -6,10 +6,23 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
+        environment:
+          BUNDLER_VERSION: 2.0.1
     executor: ruby/default
     steps:
       - checkout
       - run:
+          name: Update bundler
+          command: |
+            sudo gem update --system
+            sudo gem uninstall bundler
+            sudo rm /usr/local/bin/bundle
+            sudo rm /usr/local/bin/bundler
+            sudo gem install bundler
+      - run:
           name: Which bundler?
           command: bundle -v
       - ruby/bundle-install
+      - run:
+          name: Rspec
+          command: bundle exec rspec -fd
