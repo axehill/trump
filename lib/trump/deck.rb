@@ -6,7 +6,7 @@ module Trump
       @cards = []
       4.times do |suit|
         13.times do |number|
-          @cards << Trump::Card.new(suit, number)
+          @cards << Trump::Card.new(suit + 1, number + 1)
         end
       end
       joker_num.times do
