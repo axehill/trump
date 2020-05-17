@@ -12,10 +12,11 @@ module Trump
       joker_num.times do
         @cards << Trump::Card.new(0, 0, 1)
       end
+      shuffle
     end
 
-    def suffle
-      @cards.suffle!
+    def shuffle
+      @cards.shuffle!
     end
 
     def remain_num
